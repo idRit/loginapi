@@ -42,5 +42,5 @@ class dbModel:
         else :
             return 3 #user not found
 
-        def connected(self):
-            print('connected')
+    def connected(self):
+        print('connected')
