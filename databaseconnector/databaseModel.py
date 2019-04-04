@@ -8,6 +8,9 @@ class dbModel:
         self.cred_db = self.client.credentials
         self.endUserCollection = self.cred_db.endUser
 
+        self.aadhaar_data = self.client.aadaar_data
+        self.data = self.aadhaar_data.a_data
+
     def insert_one(self, aadhaar, pwd): 
         if aadhaar is None:
             return "Enter aadhar"
@@ -15,14 +18,17 @@ class dbModel:
         if pwd is None:
             return "Enter pwd"
 
-        hashed = bcrypt.hashpw(pwd.encode(), bcrypt.gensalt())    
+        cred = self.endUserCollection.find_one({"aadhaar" : aadhaar})
 
-        end_user_details = {
-            "aadhaar" : aadhaar,
-            "password" : hashed
-        }
+        if cred is not None:
+            if bcrypt.checkpw(pwd.encode(), cred.get("password")) :
+                return 1 #correct pwd
 
-        self.endUserCollection.insert(end_user_details)
+            else:
+                return 0 #faltu pwd
+
+        else :
+            self.get_one_detail(aadhaar, pwd)
 
     def get_one_detail(self, aadhar, pwd):  
         if aadhar is None:
@@ -31,14 +37,18 @@ class dbModel:
         if pwd is None:
             return 2 
 
-        cred = self.endUserCollection.find_one({"aadhaar" : aadhar})
+        cred = self.data.find_one({"aadaar_no" : aadhar})
 
-        if cred:
-            if bcrypt.checkpw(pwd.encode(), cred.get("password")) :
-                return 1 #correct pwd
+        if cred: 
+            hashed = bcrypt.hashpw(pwd.encode(), bcrypt.gensalt())    
 
-            else:
-                return 0 #faltu pwd
+            end_user_details = {
+                "aadhaar" : aadhaar,
+                "password" : hashed
+            }
+            
+            self.endUserCollection.insert(end_user_details)
+            
         else :
             return 3 #user not found
 

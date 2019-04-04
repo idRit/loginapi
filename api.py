@@ -42,7 +42,7 @@ def checkUser():
     elif error == 0:
         return jsonify({"notify" : "0"})
     elif error == 3:
-        return jsonify({"notify" : "3"})
+        return jsonify({"notify" : "aadhaar does not exists"})
 
 
 if __name__ == '__main__':
