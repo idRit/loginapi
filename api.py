@@ -10,7 +10,7 @@ CORS(app)
 
 @app.route("/", methods = ['GET'])
 def index():
-    return jsonify({"Connected" : "Connected"})
+    return 'kuchtoh'#jsonify({"Connected" : "Connected"})
 
 @app.route("/api/insertEndUser", methods = ['POST'])
 def insertEndUser():
