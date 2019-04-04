@@ -52,5 +52,51 @@ class dbModel:
         else :
             return 3 #user not found
 
+    def hybrid_insert(self, ad, pwd):
+        cred = self.endUserCollection.find_one({"aadhaar" : ad})
+        if cred is None:
+            cred = self.data.find_one({"aadaar_no" : ad})
+            if cred is not None: 
+                hashed = bcrypt.hashpw(pwd.encode(), bcrypt.gensalt())    
+
+                end_user_details = {
+                    "aadhaar" : ad,
+                    "password" : hashed
+                }
+            
+                self.endUserCollection.insert(end_user_details)
+                return 0#user added
+            else:
+                return 3#adhar not exist
+        else: 
+            if bcrypt.checkpw(pwd.encode(), cred.get("password")) :
+                return 1 #correct pwd
+            else:
+                return 2#faltu pwd    
+
+
+    def insertOne(self, ad, pwd):
+        credOurDb = self.endUserCollection.find_one({"aadhaar" : ad})
+        credGlobal = self.data.find_one({"aadaar_no" : ad})
+
+        if credOurDb is not None and credGlobal is not None:
+            if bcrypt.checkpw(pwd.encode(), cred.get("password")) :
+                return 1 #correct pwd
+            else:
+                return 2#faltu pwd 
+        elif credGlobal is not None and credOurDb is None:
+            hashed = bcrypt.hashpw(pwd.encode(), bcrypt.gensalt())    
+
+            end_user_details = {
+                "aadhaar" : ad,
+                "password" : hashed
+            }
+        
+            self.endUserCollection.insert(end_user_details)
+            return 0#user added
+        else :
+            return 3 #adhar not exist
+
+
     def connected(self):
         print('connected')

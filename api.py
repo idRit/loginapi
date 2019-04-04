@@ -20,19 +20,18 @@ def insertEndUser():
     aadhaar = resDict.get("aadhaar")
     password = resDict.get("password")
 
-    error = interactor.insert_one(aadhaar, password)
+    error = interactor.hybrid_insert(aadhaar, password)
 
-    if error == 1:
-        return jsonify({"notify" : "no error"})
-    elif error == 0:
-        print('password is wrong')
-        return 'faltu pwd'#jsonify({"notify" : "faltu pwd"})
-    elif error == 3:
-        return 'no adhar'#jsonify({"notify" : "aadhaar does not exists"})
+    if error == 0:
+        return jsonify({"status" : "user added"})
+    elif error == 1:
+        return jsonify({"status" : "logged in"})
     elif error == 2:
-        return 'pwd not there'#jsonify({"notify" : "password does not exists"})
-    else :
-        return 'data saved'#jsonify({"notify" : "error"})
+        return jsonify({"status" : "wrong password"})
+    elif error == 3:
+        return jsonify({"status" : "no such adhar"})
+
+    
 
 @app.route("/api/checkUser", methods = ['POST'])
 def checkUser():
