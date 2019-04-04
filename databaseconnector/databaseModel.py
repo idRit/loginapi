@@ -80,7 +80,7 @@ class dbModel:
         credGlobal = self.data.find_one({"aadaar_no" : ad})
 
         if credOurDb is not None and credGlobal is not None:
-            if bcrypt.checkpw(pwd.encode(), cred.get("password")) :
+            if bcrypt.checkpw(pwd.encode(), credOurDb.get("password")) :
                 return 1 #correct pwd
             else:
                 return 2#faltu pwd 
