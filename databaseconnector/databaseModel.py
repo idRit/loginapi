@@ -35,7 +35,7 @@ class dbModel:
         cred = self.endUserCollection.find_one({"aadhaar" : aadhar})
 
         if cred:
-            if bcrypt.checkpw(cred.get("password").encode(), pwd) :
+            if bcrypt.checkpw(pwd.encode(), cred.get("password")) :
                 return 1 #correct pwd
 
             else:
