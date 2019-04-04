@@ -23,13 +23,13 @@ def insertEndUser():
     error = interactor.insertOne(aadhaar, password)
 
     if error == 0:
-        return jsonify({"status" : "user added"})
+        return jsonify({"s" : "user added"})
     elif error == 1:
-        return 'logge'#jsonify({"status" : "logged in"})
+        return jsonify({"s" : "logged in"})
     elif error == 2:
-        return jsonify({"status" : "wrong password"})
+        return jsonify({"s" : "wrong password"})
     elif error == 3:
-        return jsonify({"status" : "no such adhar"})
+        return jsonify({"s" : "no such adhar"})
 
     
 
