@@ -20,7 +20,7 @@ def insertEndUser():
     aadhaar = resDict.get("aadhaar")
     password = resDict.get("password")
 
-    error = interactor.hybrid_insert(aadhaar, password)
+    error = interactor.insertOne(aadhaar, password)
 
     if error == 0:
         return jsonify({"status" : "user added"})
