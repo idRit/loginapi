@@ -1,4 +1,4 @@
-from database-connector import databaseModel.dbModel
+from databaseconnector.databaseModel import dbModel
 from flask import Flask, url_for, request, json, Response, jsonify
 from flask_cors import CORS, cross_origin
 
