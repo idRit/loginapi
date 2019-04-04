@@ -15,7 +15,8 @@ class dbModel:
         if pwd is None:
             return "Enter pwd"
 
-        hashed = bcrypt.hashpw(pwd, bcrypt.gensalt())    
+        pwd += 
+        hashed = bcrypt.hashpw(pwd.encode(), bcrypt.gensalt())    
 
         end_user_details = {
             "aadhaar" : aadhaar,
@@ -34,7 +35,7 @@ class dbModel:
         cred = self.endUserCollection.find_one({"aadhaar" : aadhar})
 
         if cred:
-            if bcrypt.checkpw(cred.get("password"), pwd) :
+            if bcrypt.checkpw(cred.get("password").encode(), pwd) :
                 return 1 #correct pwd
 
             else:
