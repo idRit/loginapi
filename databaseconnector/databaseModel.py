@@ -14,7 +14,7 @@ class dbModel:
 
         if pwd is None:
             return "Enter pwd"
-            
+
         hashed = bcrypt.hashpw(pwd.encode(), bcrypt.gensalt())    
 
         end_user_details = {
@@ -25,7 +25,7 @@ class dbModel:
         self.endUserCollection.insert(end_user_details)
 
     def get_one_detail(self, aadhar, pwd):  
-        if aadhaar is None:
+        if aadhar is None:
             return 3 
         
         if pwd is None:
