@@ -43,7 +43,7 @@ class dbModel:
             hashed = bcrypt.hashpw(pwd.encode(), bcrypt.gensalt())    
 
             end_user_details = {
-                "aadhaar" : aadhaar,
+                "aadhaar" : aadhar,
                 "password" : hashed
             }
             
