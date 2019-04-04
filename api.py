@@ -24,7 +24,7 @@ def insertEndUser():
 
     if error is None:
         return jsonify({"notify" : "no error"})
-    else 
+    else :
         return jsonify({"notify" : "error"})
 
 @app.route("/api/checkUser", methods = ['POST'])
