@@ -14,8 +14,7 @@ class dbModel:
 
         if pwd is None:
             return "Enter pwd"
-
-        pwd += 
+            
         hashed = bcrypt.hashpw(pwd.encode(), bcrypt.gensalt())    
 
         end_user_details = {
