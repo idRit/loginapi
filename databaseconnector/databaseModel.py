@@ -39,7 +39,7 @@ class dbModel:
 
         cred = self.data.find_one({"aadaar_no" : aadhar})
 
-        if cred: 
+        if cred is not None: 
             hashed = bcrypt.hashpw(pwd.encode(), bcrypt.gensalt())    
 
             end_user_details = {
