@@ -25,7 +25,7 @@ def insertEndUser():
     if error == 0:
         return jsonify({"status" : "user added"})
     elif error == 1:
-        return jsonify({"status" : "logged in"})
+        return 'logge'#jsonify({"status" : "logged in"})
     elif error == 2:
         return jsonify({"status" : "wrong password"})
     elif error == 3:
