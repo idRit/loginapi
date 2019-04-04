@@ -22,7 +22,7 @@ def insertEndUser():
 
     error = interactor.insert_one(aadhaar, password)
 
-    if error is None:
+    if error == 1:
         return jsonify({"notify" : "no error"})
     #else :
     #    return jsonify({"notify" : "error"})

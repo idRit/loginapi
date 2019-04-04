@@ -48,7 +48,7 @@ class dbModel:
             }
             
             self.endUserCollection.insert(end_user_details)
-            
+            return 1
         else :
             return 3 #user not found
 
