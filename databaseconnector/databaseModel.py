@@ -13,10 +13,10 @@ class dbModel:
 
     def insert_one(self, aadhaar, pwd): 
         if aadhaar is None:
-            return "Enter aadhar"
+            return 3
 
         if pwd is None:
-            return "Enter pwd"
+            return 0
 
         cred = self.endUserCollection.find_one({"aadhaar" : aadhaar})
 
