@@ -30,6 +30,8 @@ def insertEndUser():
         return jsonify({"notify" : "faltu pwd"})
     elif error == 3:
         return jsonify({"notify" : "aadhaar does not exists"})
+    elif error == 2:
+        return jsonify({"notify" : "password does not exists"})
 
 @app.route("/api/checkUser", methods = ['POST'])
 def checkUser():
