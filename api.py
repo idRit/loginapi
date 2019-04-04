@@ -27,6 +27,7 @@ def insertEndUser():
     #else :
     #    return jsonify({"notify" : "error"})
     elif error == 0:
+        print('password is wrong')
         return jsonify({"notify" : "faltu pwd"})
     elif error == 3:
         return jsonify({"notify" : "aadhaar does not exists"})
