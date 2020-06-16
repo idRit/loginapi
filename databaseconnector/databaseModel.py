@@ -4,7 +4,7 @@ import bcrypt
 class dbModel:
     
     def __init__(self):
-        self.client = MongoClient("mongodb+srv://red:blxgre369@cluster0-oaiys.mongodb.net/test?retryWrites=true")
+        self.client = MongoClient("")
         self.cred_db = self.client.credentials
         self.endUserCollection = self.cred_db.endUser
 
